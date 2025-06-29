@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
 interface FaqItemProps {
   question: string;
@@ -10,24 +10,26 @@ interface FaqItemProps {
 
 const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, toggleOpen }) => {
   return (
-    <div className="border-b border-space-700 last:border-0">
+    <div className="border-b border-neutral-800/50 last:border-0">
       <button
-        className="w-full py-5 flex items-center justify-between focus:outline-none"
+        className="w-full py-6 flex items-center justify-between focus:outline-none group"
         onClick={toggleOpen}
       >
-        <h3 className="text-left text-lg font-medium">{question}</h3>
-        {isOpen ? (
-          <ChevronUp className="h-5 w-5 text-purple-500" />
-        ) : (
-          <ChevronDown className="h-5 w-5 text-purple-500" />
-        )}
+        <h3 className="text-left text-lg font-semibold text-neutral-100 group-hover:text-brand-400 transition-colors duration-300">{question}</h3>
+        <div className="p-2 rounded-lg bg-neutral-800/50 group-hover:bg-brand-500/20 transition-colors duration-300">
+          {isOpen ? (
+            <ChevronUpIcon className="h-5 w-5 text-brand-400" />
+          ) : (
+            <ChevronDownIcon className="h-5 w-5 text-brand-400" />
+          )}
+        </div>
       </button>
       <div 
-        className={`overflow-hidden transition-all duration-300 ${
-          isOpen ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'
+        className={`overflow-hidden transition-all duration-500 ${
+          isOpen ? 'max-h-96 opacity-100 pb-6' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-space-200">{answer}</p>
+        <p className="text-neutral-400 leading-relaxed text-lg">{answer}</p>
       </div>
     </div>
   );
@@ -68,13 +70,13 @@ const Faq: React.FC = () => {
   };
   
   return (
-    <section id="faq" className="section bg-space-800/50 backdrop-blur-sm">
+    <section id="faq" className="section section-dark">
       <div className="container">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="mb-4">Frequently Asked Questions</h2>
+        <div className="text-center mb-20 max-w-4xl mx-auto">
+          <h2 className="mb-6">Frequently Asked Questions</h2>
         </div>
         
-        <div className="max-w-3xl mx-auto bg-space-900 rounded-xl p-6 md:p-8 shadow-xl border border-space-700">
+        <div className="max-w-4xl mx-auto card">
           {faqs.map((faq, index) => (
             <FaqItem 
               key={index}
@@ -86,11 +88,11 @@ const Faq: React.FC = () => {
           ))}
         </div>
         
-        <div className="mt-12 text-center">
-          <p className="text-space-300 mb-4">
+        <div className="mt-16 text-center">
+          <p className="text-neutral-400 mb-6 text-lg">
             Have a question that's not answered here?
           </p>
-          <a href="#contact" className="btn btn-secondary">
+          <a href="#contact" className="btn btn-secondary text-lg px-8 py-4">
             Ask Us Directly
           </a>
         </div>

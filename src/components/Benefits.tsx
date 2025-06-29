@@ -1,56 +1,56 @@
 import React from 'react';
 import { 
-  BarChart2, 
-  Clock, 
-  Edit3, 
-  Smartphone, 
-  CheckCircle2 
-} from 'lucide-react';
+  ChartBarIcon, 
+  ClockIcon, 
+  PencilIcon, 
+  DevicePhoneMobileIcon
+} from '@heroicons/react/24/outline';
 
 const Benefits: React.FC = () => {
   const benefits = [
     {
-      icon: <BarChart2 className="h-8 w-8 text-purple-600" />,
+      icon: <ChartBarIcon className="h-8 w-8 text-brand-500" />,
       title: "Built to convert",
       description: "Each section builds trust and is intentionally designed to help visitors act."
     },
     {
-      icon: <Edit3 className="h-8 w-8 text-purple-600" />,
+      icon: <PencilIcon className="h-8 w-8 text-brand-500" />,
       title: "Copy that converts",
       description: "Messaging tailored to your ideal customers that highlights how you help, how it helps, and why it matters."
     },
     {
-      icon: <Clock className="h-8 w-8 text-purple-600" />,
+      icon: <ClockIcon className="h-8 w-8 text-brand-500" />,
       title: "Loads fast, ranks better",
       description: "Sites are optimized for speed and SEO so they perform well and get found."
     },
     {
-      icon: <Smartphone className="h-8 w-8 text-purple-600" />,
+      icon: <DevicePhoneMobileIcon className="h-8 w-8 text-brand-500" />,
       title: "Mobile-first & responsive everywhere",
       description: "Most people visit from their phones. Your site will work beautifully on every device."
     }
   ];
 
   return (
-    <section id="benefits" className="section bg-space-800">
+    <section id="benefits" className="section section-dark">
       <div className="container">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="mb-4">
-            <span className="bg-gradient-to-r from-purple-500 to-purple-700 bg-clip-text text-transparent">
+        <div className="text-center mb-20 max-w-4xl mx-auto">
+          <h2 className="mb-6">
+            <span className="gradient-text">
               Why our websites deliver results
             </span>
           </h2>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-10">
           {benefits.map((benefit, index) => (
             <div key={index} className="card group flex flex-col h-full">
-              <div className="mb-4">{benefit.icon}</div>
-              <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-                {/* <CheckCircle2 className="h-5 w-5 text-purple-600" /> */}
+              <div className="mb-6 p-4 rounded-xl bg-brand-500/10 border border-brand-500/20 w-fit group-hover:bg-brand-500/20 transition-colors duration-300">
+                {benefit.icon}
+              </div>
+              <h3 className="text-2xl font-semibold mb-4 text-neutral-100">
                 {benefit.title}
               </h3>
-              <p className="text-space-200 flex-grow">{benefit.description}</p>
+              <p className="text-neutral-400 flex-grow leading-relaxed text-lg">{benefit.description}</p>
             </div>
           ))}
         </div>

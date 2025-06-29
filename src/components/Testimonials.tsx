@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
+import { StarIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/solid';
 
 const Testimonials: React.FC = () => {
   const testimonials = [
@@ -20,61 +20,61 @@ const Testimonials: React.FC = () => {
   ];
   
   return (
-    <section id="testimonials" className="section bg-space-800">
+    <section id="testimonials" className="section section-dark">
       <div className="container">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="mb-4">Success Stories</h2>
-          <p className="text-xl text-space-200">
+        <div className="text-center mb-20 max-w-4xl mx-auto">
+          <h2 className="mb-6">Success Stories</h2>
+          <p className="text-xl text-neutral-400 leading-relaxed">
             Real results from real clients who upgraded their online presence
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-10 mb-20">
           {testimonials.map((testimonial, index) => (
             <div 
               key={index}
-              className="bg-space-800/80 rounded-xl p-8 border border-space-700 relative hover:border-purple-600 transition-all duration-300"
+              className="card relative group"
             >
-              <div className="absolute -top-6 -left-6 text-purple-600">
-                <Quote size={48} />
+              <div className="absolute -top-4 -left-4 p-3 rounded-xl bg-brand-500/20 border border-brand-500/30">
+                <ChatBubbleBottomCenterTextIcon className="h-6 w-6 text-brand-400" />
               </div>
               
               <img 
                 src={testimonial.image} 
                 alt={testimonial.name}
-                className="w-full h-48 object-cover rounded-lg mb-6"
+                className="w-full h-56 object-cover rounded-xl mb-8 border border-neutral-800/50"
               />
               
-              <div className="flex mb-4">
+              <div className="flex mb-6">
                 {[...Array(testimonial.stars)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                  <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
                 ))}
               </div>
               
-              <blockquote className="text-lg mb-6 italic">
+              <blockquote className="text-lg mb-8 italic text-neutral-300 leading-relaxed">
                 "{testimonial.quote}"
               </blockquote>
               
               <div>
-                <p className="font-bold text-lg">{testimonial.name}</p>
-                <p className="text-space-300">{testimonial.title}</p>
+                <p className="font-semibold text-xl text-neutral-100">{testimonial.name}</p>
+                <p className="text-neutral-400">{testimonial.title}</p>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="mt-20 grid md:grid-cols-3 gap-6">
-          <div className="card text-center py-10">
-            <h3 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-purple-700 bg-clip-text text-transparent">50+</h3>
-            <p className="text-space-200">Successful projects delivered</p>
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="card text-center py-12">
+            <h3 className="text-5xl font-bold mb-4 gradient-text">50+</h3>
+            <p className="text-neutral-400 text-lg">Successful projects delivered</p>
           </div>
-          <div className="card text-center py-10">
-            <h3 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-purple-700 bg-clip-text text-transparent">108%</h3>
-            <p className="text-space-200">Average conversion improvement</p>
+          <div className="card text-center py-12">
+            <h3 className="text-5xl font-bold mb-4 gradient-text">108%</h3>
+            <p className="text-neutral-400 text-lg">Average conversion improvement</p>
           </div>
-          <div className="card text-center py-10">
-            <h3 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-purple-700 bg-clip-text text-transparent">7-10</h3>
-            <p className="text-space-200">Days from start to launch</p>
+          <div className="card text-center py-12">
+            <h3 className="text-5xl font-bold mb-4 gradient-text">7-10</h3>
+            <p className="text-neutral-400 text-lg">Days from start to launch</p>
           </div>
         </div>
       </div>
