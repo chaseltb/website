@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExclamationTriangleIcon, TrendingDownIcon, ClockIcon, CurrencyDollarIcon, UserMinusIcon, BullseyeIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon, TrendingDownIcon, ClockIcon, CurrencyDollarIcon, UserMinusIcon, TargetIcon } from '@heroicons/react/24/outline';
 
 const ClientLogos: React.FC = () => {
   const painPoints = [
@@ -14,7 +14,7 @@ const ClientLogos: React.FC = () => {
       description: 'In 2025, customers expect fast, professional service. If your website doesn\'t meet these expectations, you\'re leaving money on the table.'
     },
     {
-      icon: <BullseyeIcon className="h-7 w-7 text-red-400" />,
+      icon: <TargetIcon className="h-7 w-7 text-red-400" />,
       title: 'Unclear Messaging',
       description: 'Your message isn\'t resonating with your ideal clients, causing confusion and missed opportunities.'
     }
