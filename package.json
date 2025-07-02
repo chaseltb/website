@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.0.18",
     "framer-motion": "^10.16.4",
     "keen-slider": "^6.8.6",
+    "lucide-react": "^0.303.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.4",
