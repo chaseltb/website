@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-semibold text-lg mb-6 text-neutral-100">Case Studies</h3>
             <ul className="space-y-4">
-              <li><Link to="/case-studies/agency-4x" className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">Agency 4x Growth</Link></li>
+              <li><Link to="/case-studies/homers-hardwood" className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">Homer's Hardwood Floors</Link></li>
               <li><Link to="/case-studies/saas-conversion" className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">SaaS Conversion Boost</Link></li>
               <li><button onClick={() => scrollToSection('contact')} className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">Contact</button></li>
               <li className="flex items-center gap-3 pt-2">

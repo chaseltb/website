@@ -14,7 +14,7 @@ const Pricing = lazy(() => import('./components/Pricing'));
 const Faq = lazy(() => import('./components/Faq'));
 const Cta = lazy(() => import('./components/Cta'));
 const Resources = lazy(() => import('./pages/Resources'));
-const Agency4x = lazy(() => import('./pages/case-studies/Agency4x'));
+const HomersHardwood = lazy(() => import('./pages/case-studies/HomersHardwood'));
 const SaasConversion = lazy(() => import('./pages/case-studies/SaasConversion'));
 
 function HomePage() {
@@ -62,9 +62,9 @@ function App() {
             <Resources />
           </Suspense>
         } />
-        <Route path="/case-studies/agency-4x" element={
+        <Route path="/case-studies/homers-hardwood" element={
           <Suspense fallback={<div className="min-h-screen bg-space-900" />}>
-            <Agency4x />
+            <HomersHardwood />
           </Suspense>
         } />
         <Route path="/case-studies/saas-conversion" element={
