@@ -1,10 +1,10 @@
 import React from 'react';
-import { Warning, TrendingDown, Clock, CurrencyDollar, UserMinus, Target } from 'phosphor-react';
+import { Warning, TrendDown, Clock, CurrencyDollar, UserMinus, Target } from 'phosphor-react';
 
 const ClientLogos: React.FC = () => {
   const painPoints = [
     {
-      icon: <TrendingDown className="h-7 w-7 text-red-400" weight="bold" />,
+      icon: <TrendDown className="h-7 w-7 text-red-400" weight="bold" />,
       title: 'Visitors Leave Without Acting',
       description: 'Your website gets traffic but you have low conversion rates, so visitors leave without taking action.'
     },
