@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { TrendingUp, Users, Zap, Target } from 'lucide-react';
+import { TrendingUp, Users, Lightning, Target } from 'phosphor-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
@@ -60,12 +60,12 @@ const SaasConversion: React.FC = () => {
                 <h2>Our Approach</h2>
                 <div className="grid md:grid-cols-2 gap-8 my-8">
                   <div className="card">
-                    <Users className="h-8 w-8 text-purple-600 mb-4" />
+                    <Users className="h-8 w-8 text-purple-600 mb-4" weight="bold" />
                     <h3 className="text-xl font-bold mb-2">User-Centric Design</h3>
                     <p className="text-space-200">Simplified the trial signup process and highlighted key benefits</p>
                   </div>
                   <div className="card">
-                    <Zap className="h-8 w-8 text-purple-600 mb-4" />
+                    <Lightning className="h-8 w-8 text-purple-600 mb-4" weight="bold" />
                     <h3 className="text-xl font-bold mb-2">Performance Optimization</h3>
                     <p className="text-space-200">Improved page load times and mobile responsiveness</p>
                   </div>

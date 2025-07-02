@@ -1,23 +1,23 @@
 import React from 'react';
-import { ChatBubbleLeftRightIcon, PencilSquareIcon, RocketLaunchIcon } from '@heroicons/react/24/outline';
+import { ChatCircle, PencilSimple, Rocket } from 'phosphor-react';
 
 const Process: React.FC = () => {
   const steps = [
     {
       number: "01",
-      icon: <ChatBubbleLeftRightIcon className="h-10 w-10 text-brand-500" />,
+      icon: <ChatCircle className="h-10 w-10 text-brand-500" weight="bold" />,
       title: "Free strategy call",
       description: "We discuss your business, market, and analyze what your business needs to do to turn browsers into customers."
     },
     {
       number: "02",
-      icon: <PencilSquareIcon className="h-10 w-10 text-brand-500" />,
+      icon: <PencilSimple className="h-10 w-10 text-brand-500" weight="bold" />,
       title: "First revision in less than a week",
       description: "We deliver a responsive design in under a week and modify it based on your feedback."
     },
     {
       number: "03",
-      icon: <RocketLaunchIcon className="h-10 w-10 text-brand-500" />,
+      icon: <Rocket className="h-10 w-10 text-brand-500" weight="bold" />,
       title: "Launch with confidence",
       description: "Once the site is ready for launch, we handle the technical setup so you can focus on the business side."
     }

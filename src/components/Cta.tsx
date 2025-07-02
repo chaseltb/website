@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRightIcon, RocketLaunchIcon } from '@heroicons/react/24/outline';
+import { CaretRight, Rocket } from 'phosphor-react';
 
 const Cta: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const Cta: React.FC = () => {
           <div className="absolute inset-0 gradient-overlay opacity-50"></div>
           
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 p-4 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 shadow-strong">
-            <RocketLaunchIcon className="h-8 w-8 text-white" />
+            <Rocket className="h-8 w-8 text-white" weight="bold" />
           </div>
           
           <div className="relative z-10 text-center mb-12 pt-8">
@@ -77,7 +77,7 @@ const Cta: React.FC = () => {
               className="w-full btn btn-primary py-5 text-lg flex items-center justify-center gap-3 group"
             >
               Book Your Free Strategy Call 
-              <ChevronRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <CaretRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" weight="bold" />
             </button>
           </form>
           

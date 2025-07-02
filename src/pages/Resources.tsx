@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Download, FileText, BookOpen, Video } from 'lucide-react';
+import { Download, FileText, BookOpen, VideoCamera } from 'phosphor-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -9,21 +9,21 @@ const Resources: React.FC = () => {
     {
       title: "Website Conversion Template",
       description: "A comprehensive template for building high-converting service business websites. Includes section-by-section guidance and copy examples.",
-      icon: <FileText className="h-8 w-8 text-purple-600" />,
+      icon: <FileText className="h-8 w-8 text-purple-600" weight="bold" />,
       downloadUrl: "/templates/website-conversion-template.pdf",
       type: "PDF Template"
     },
     {
       title: "Conversion Optimization Guide",
       description: "Learn the exact strategies we use to optimize websites for maximum conversions.",
-      icon: <BookOpen className="h-8 w-8 text-purple-600" />,
+      icon: <BookOpen className="h-8 w-8 text-purple-600" weight="bold" />,
       downloadUrl: "/guides/conversion-optimization.pdf",
       type: "PDF Guide"
     },
     {
       title: "Website Audit Checklist",
       description: "A comprehensive checklist to evaluate your current website's conversion potential.",
-      icon: <FileText className="h-8 w-8 text-purple-600" />,
+      icon: <FileText className="h-8 w-8 text-purple-600" weight="bold" />,
       downloadUrl: "/checklists/website-audit.pdf",
       type: "PDF Checklist"
     }
@@ -60,7 +60,7 @@ const Resources: React.FC = () => {
                     className="btn btn-primary w-full flex items-center justify-center gap-2"
                     download
                   >
-                    <Download size={18} />
+                    <Download className="h-5 w-5" weight="bold" />
                     Download Now
                   </a>
                 </div>

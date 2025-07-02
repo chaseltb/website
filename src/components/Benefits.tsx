@@ -1,30 +1,30 @@
 import React from 'react';
 import { 
-  ChartBarIcon, 
-  ClockIcon, 
-  PencilIcon, 
-  DevicePhoneMobileIcon
-} from '@heroicons/react/24/outline';
+  ChartBar, 
+  Clock, 
+  PencilSimple, 
+  DeviceMobile
+} from 'phosphor-react';
 
 const Benefits: React.FC = () => {
   const benefits = [
     {
-      icon: <ChartBarIcon className="h-8 w-8 text-brand-500" />,
+      icon: <ChartBar className="h-8 w-8 text-brand-500" weight="bold" />,
       title: "Built to convert",
       description: "Each section builds trust and is intentionally designed to help visitors act."
     },
     {
-      icon: <PencilIcon className="h-8 w-8 text-brand-500" />,
+      icon: <PencilSimple className="h-8 w-8 text-brand-500" weight="bold" />,
       title: "Copy that converts",
       description: "Messaging tailored to your ideal customers that highlights how you help, how it helps, and why it matters."
     },
     {
-      icon: <ClockIcon className="h-8 w-8 text-brand-500" />,
+      icon: <Clock className="h-8 w-8 text-brand-500" weight="bold" />,
       title: "Loads fast, ranks better",
       description: "Sites are optimized for speed and SEO so they perform well and get found."
     },
     {
-      icon: <DevicePhoneMobileIcon className="h-8 w-8 text-brand-500" />,
+      icon: <DeviceMobile className="h-8 w-8 text-brand-500" weight="bold" />,
       title: "Mobile-first & responsive everywhere",
       description: "Most people visit from their phones. Your site will work beautifully on every device."
     }

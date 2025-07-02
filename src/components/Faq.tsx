@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import { CaretDown, CaretUp } from 'phosphor-react';
 
 interface FaqItemProps {
   question: string;
@@ -18,9 +18,9 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, toggleOpen 
         <h3 className="text-left text-lg font-semibold text-neutral-100 group-hover:text-brand-400 transition-colors duration-300">{question}</h3>
         <div className="p-2 rounded-lg bg-neutral-800/50 group-hover:bg-brand-500/20 transition-colors duration-300">
           {isOpen ? (
-            <ChevronUpIcon className="h-5 w-5 text-brand-400" />
+            <CaretUp className="h-5 w-5 text-brand-400" weight="bold" />
           ) : (
-            <ChevronDownIcon className="h-5 w-5 text-brand-400" />
+            <CaretDown className="h-5 w-5 text-brand-400" weight="bold" />
           )}
         </div>
       </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { RocketLaunchIcon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
+import { Rocket, Envelope, Phone } from 'phosphor-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-3 text-2xl font-bold mb-6 group">
               <div className="p-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 group-hover:from-brand-400 group-hover:to-brand-500 transition-all duration-300">
-                <RocketLaunchIcon className="h-6 w-6 text-white" />
+                <Rocket className="h-6 w-6 text-white" weight="bold" />
               </div>
               <span className="gradient-text">
                 Stellar<span className="text-neutral-50">Sites</span>
@@ -72,13 +72,13 @@ const Footer: React.FC = () => {
               <li><Link to="/case-studies/saas-conversion" className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">SaaS Conversion Boost</Link></li>
               <li><button onClick={() => scrollToSection('contact')} className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">Contact</button></li>
               <li className="flex items-center gap-3 pt-2">
-                <EnvelopeIcon className="h-5 w-5 text-brand-500" />
+                <Envelope className="h-5 w-5 text-brand-500" weight="bold" />
                 <a href="mailto:hello@stellarsites.com" className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">
                   hello@stellarsites.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <PhoneIcon className="h-5 w-5 text-brand-500" />
+                <Phone className="h-5 w-5 text-brand-500" weight="bold" />
                 <a href="tel:+15551234567" className="text-neutral-400 hover:text-brand-400 transition-colors duration-300">
                   (555) 123-4567
                 </a>

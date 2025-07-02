@@ -1,5 +1,5 @@
 import React from 'react';
-import { StarIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/solid';
+import { Star, ChatCircle } from 'phosphor-react';
 
 const Testimonials: React.FC = () => {
   const testimonials = [
@@ -36,7 +36,7 @@ const Testimonials: React.FC = () => {
               className="card relative group"
             >
               <div className="absolute -top-4 -left-4 p-3 rounded-xl bg-brand-500/20 border border-brand-500/30">
-                <ChatBubbleBottomCenterTextIcon className="h-6 w-6 text-brand-400" />
+                <ChatCircle className="h-6 w-6 text-brand-400" weight="fill" />
               </div>
               
               <img 
@@ -47,7 +47,7 @@ const Testimonials: React.FC = () => {
               
               <div className="flex mb-6">
                 {[...Array(testimonial.stars)].map((_, i) => (
-                  <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
+                  <Star key={i} className="h-5 w-5 text-yellow-400" weight="fill" />
                 ))}
               </div>
               

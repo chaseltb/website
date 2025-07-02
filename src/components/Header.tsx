@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RocketLaunchIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Rocket, List, X } from 'phosphor-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
       <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 text-2xl font-bold group">
           <div className="p-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 group-hover:from-brand-400 group-hover:to-brand-500 transition-all duration-300">
-            <RocketLaunchIcon className="h-6 w-6 text-white" />
+            <Rocket className="h-6 w-6 text-white" weight="bold" />
           </div>
           <span className="gradient-text">
             Stellar<span className="text-neutral-50">Sites</span>
@@ -89,9 +89,9 @@ const Header: React.FC = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? (
-            <XMarkIcon className="h-6 w-6" />
+            <X className="h-6 w-6" weight="bold" />
           ) : (
-            <Bars3Icon className="h-6 w-6" />
+            <List className="h-6 w-6" weight="bold" />
           )}
         </button>
       </div>

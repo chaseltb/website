@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { Check, CaretRight } from 'phosphor-react';
 
 const Pricing: React.FC = () => {
   const plans = [
@@ -91,7 +91,7 @@ const Pricing: React.FC = () => {
                 {plan.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-start gap-4">
                     <div className="p-1 rounded-full bg-brand-500/20 border border-brand-500/30 flex-shrink-0 mt-0.5">
-                      <CheckIcon className="h-4 w-4 text-brand-400" />
+                      <Check className="h-4 w-4 text-brand-400" weight="bold" />
                     </div>
                     <span className="text-neutral-300 leading-relaxed">{feature}</span>
                   </li>
@@ -105,7 +105,7 @@ const Pricing: React.FC = () => {
                 }`}
               >
                 Get Started 
-                <ChevronRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <CaretRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" weight="bold" />
               </a>
             </div>
           ))}

@@ -1,21 +1,20 @@
 import React from 'react';
-import { ExclamationTriangleIcon, TrendingDownIcon, ClockIcon, CurrencyDollarIcon, UserMinusIcon } from '@heroicons/react/24/outline';
-import { Target } from 'lucide-react';
+import { Warning, TrendingDown, Clock, CurrencyDollar, UserMinus, Target } from 'phosphor-react';
 
 const ClientLogos: React.FC = () => {
   const painPoints = [
     {
-      icon: <TrendingDownIcon className="h-7 w-7 text-red-400" />,
+      icon: <TrendingDown className="h-7 w-7 text-red-400" weight="bold" />,
       title: 'Visitors Leave Without Acting',
       description: 'Your website gets traffic but you have low conversion rates, so visitors leave without taking action.'
     },
     {
-      icon: <CurrencyDollarIcon className="h-7 w-7 text-red-400" />,
+      icon: <CurrencyDollar className="h-7 w-7 text-red-400" weight="bold" />,
       title: 'Lost Revenue',
       description: 'In 2025, customers expect fast, professional service. If your website doesn\'t meet these expectations, you\'re leaving money on the table.'
     },
     {
-      icon: <Target className="h-7 w-7 text-red-400" />,
+      icon: <Target className="h-7 w-7 text-red-400" weight="bold" />,
       title: 'Unclear Messaging',
       description: 'Your message isn\'t resonating with your ideal clients, causing confusion and missed opportunities.'
     }
@@ -27,7 +26,7 @@ const ClientLogos: React.FC = () => {
         <div className="text-center mb-16 max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="p-3 rounded-2xl bg-red-500/10 border border-red-500/20">
-              <ExclamationTriangleIcon className="h-8 w-8 text-red-400" />
+              <Warning className="h-8 w-8 text-red-400" weight="bold" />
             </div>
             <h2 className="text-4xl font-bold">Is your website turning away customers?</h2>
           </div>

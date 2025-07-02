@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { CaretRight } from 'phosphor-react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
               <a href="#contact" className="btn btn-primary text-lg px-10 py-4 w-full sm:w-auto group">
                 <span className="flex items-center justify-center gap-3">
                   Get A Free Strategy Session 
-                  <ChevronRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <CaretRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" weight="bold" />
                 </span>
               </a>
               <a href="#process" className="btn btn-secondary text-lg px-10 py-4 w-full sm:w-auto">
