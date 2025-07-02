@@ -8,10 +8,6 @@ const Cta: React.FC = () => {
         <div className="max-w-5xl mx-auto card relative overflow-hidden">
           <div className="absolute inset-0 gradient-overlay opacity-50"></div>
           
-          <div className="absolute -top-1 left-1/2 -translate-x-1/2 p-4 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 shadow-strong">
-            <Rocket className="h-8 w-8 text-white" weight="bold" />
-          </div>
-          
           <div className="relative z-10 text-center mb-12 pt-8">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-100">
               Ready to turn your website into a lead generating machine?
