@@ -41,7 +41,7 @@ const Header: React.FC = () => {
             <Rocket className="h-6 w-6 text-white" weight="bold" />
           </div>
           <span className="gradient-text">
-            Stellar<span className="text-neutral-50">Sites</span>
+            Etherea<span className="text-neutral-50">Labs</span>
           </span>
         </Link>
         

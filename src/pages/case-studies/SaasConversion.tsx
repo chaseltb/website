@@ -8,7 +8,7 @@ const SaasConversion: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Case Study: SaaS Conversion Boost | Stellar Sites</title>
+        <title>Case Study: SaaS Conversion Boost | Etherea Labs</title>
         <meta name="description" content="How we helped a SaaS company increase trial signups by 156% through strategic website optimization." />
       </Helmet>
 

@@ -32,7 +32,7 @@ const Resources: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Resources | Stellar Sites</title>
+        <title>Resources | Etherea Labs</title>
         <meta name="description" content="Download free resources to help improve your website's conversion rate." />
       </Helmet>
 

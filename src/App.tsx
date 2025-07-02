@@ -21,15 +21,15 @@ function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Stellar Sites | High-Converting Websites For Service Businesses</title>
+        <title>Etherea Labs | High-Converting Websites For Service Businesses</title>
         <meta name="description" content="We build high-converting websites for service businesses who want more leads — not just a pretty design." />
-        <meta property="og:title" content="Stellar Sites | High-Converting Websites" />
+        <meta property="og:title" content="Etherea Labs | High-Converting Websites" />
         <meta property="og:description" content="Turn visitors into leads with a site built to convert." />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Stellar Sites | High-Converting Websites" />
+        <meta name="twitter:title" content="Etherea Labs | High-Converting Websites" />
         <meta name="twitter:description" content="Turn visitors into leads with a site built to convert." />
-        <link rel="canonical" href="https://stellarsites.com" />
+        <link rel="canonical" href="https://etherealabs.com" />
       </Helmet>
       
       <Header />

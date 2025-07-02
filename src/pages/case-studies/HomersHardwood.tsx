@@ -8,7 +8,7 @@ const HomersHardwood: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Case Study: Homer's Hardwood Floors | Stellar Sites</title>
+        <title>Case Study: Homer's Hardwood Floors | Etherea Labs</title>
         <meta name="description" content="How we helped Homer's Hardwood Floors transform from word-of-mouth only to 24/7 online lead generation after 16+ years in business." />
       </Helmet>
 
