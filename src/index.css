@@ -117,6 +117,24 @@
   .section-accent {
     @apply bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950;
   }
+
+  /* Custom slider styles */
+  .slider::-webkit-slider-thumb {
+    @apply appearance-none w-5 h-5 bg-gradient-to-r from-brand-500 to-brand-600 rounded-full cursor-pointer shadow-medium;
+    border: 2px solid #ffffff;
+  }
+  
+  .slider::-moz-range-thumb {
+    @apply w-5 h-5 bg-gradient-to-r from-brand-500 to-brand-600 rounded-full cursor-pointer shadow-medium border-0;
+  }
+  
+  .slider::-webkit-slider-track {
+    @apply bg-neutral-700 rounded-lg;
+  }
+  
+  .slider::-moz-range-track {
+    @apply bg-neutral-700 rounded-lg;
+  }
 }
 
 /* Enhanced focus styles for accessibility */
