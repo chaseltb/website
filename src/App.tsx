@@ -16,6 +16,7 @@ const Cta = lazy(() => import('./components/Cta'));
 const Resources = lazy(() => import('./pages/Resources'));
 const HomersHardwood = lazy(() => import('./pages/case-studies/HomersHardwood'));
 const SaasConversion = lazy(() => import('./pages/case-studies/SaasConversion'));
+const FinishMyProject = lazy(() => import('./pages/FinishMyProject'));
 
 function HomePage() {
   return (
@@ -70,6 +71,11 @@ function App() {
         <Route path="/case-studies/saas-conversion" element={
           <Suspense fallback={<div className="min-h-screen bg-space-900" />}>
             <SaasConversion />
+          </Suspense>
+        } />
+        <Route path="/finishmyproject" element={
+          <Suspense fallback={<div className="min-h-screen bg-space-900" />}>
+            <FinishMyProject />
           </Suspense>
         } />
       </Routes>
