@@ -96,7 +96,7 @@ const FinishMyProject: React.FC = () => {
           <div className="container">
             <div className="max-w-5xl mx-auto text-center">
               <h1 className="mb-8 font-bold">
-                <span className="block mb-3">I help non-technical founders finish their Vibe websit fast
+                <span className="block mb-3">I help non-technical founders finish their Vibe websit fast</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-neutral-400 mb-12 max-w-4xl mx-auto leading-relaxed">
