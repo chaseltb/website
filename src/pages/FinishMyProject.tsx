@@ -100,7 +100,7 @@ const FinishMyProject: React.FC = () => {
               </h1>
               
               <p className="text-xl md:text-2xl text-neutral-400 mb-12 max-w-4xl mx-auto leading-relaxed">
-                So you can finally launch and start getting leads. Used by busy business owners who hit a wall — and needed a pro to step in and finish the job.
+                So you can finally launch and start getting leads. Used by busy business owners who hit a wall and needed a pro to step in and finish the job.
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
