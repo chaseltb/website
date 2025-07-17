@@ -104,7 +104,7 @@ const FinishMyProject: React.FC = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-                <a href="#contact" className="btn btn-primary text-lg px-10 py-4 w-full sm:w-auto group">
+                <a href="#contact" className="btn btn-primary text-lg px-10 py-4 w-full sm:w-auto group shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transition-all duration-300">
                   <span className="flex items-center justify-center gap-3">
                     Finish My Site Now
                     <CaretRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" weight="bold" />
@@ -114,7 +114,7 @@ const FinishMyProject: React.FC = () => {
               </div>
 
               {/* Industries */}
-              <div className="glass p-8 rounded-2xl border border-neutral-800/50">
+              <div className="glass p-8 rounded-2xl border border-neutral-800/50 shadow-[0_0_15px_rgba(168,85,247,0.1)]">
                 <p className="text-neutral-300 mb-6 text-lg font-medium">
                   Trusted by coaches, solopreneurs, creatives, and early-stage startups
                 </p>
@@ -140,7 +140,7 @@ const FinishMyProject: React.FC = () => {
             
             <div className="grid md:grid-cols-3 gap-10">
               {benefits.map((benefit, index) => (
-                <div key={index} className="card group flex flex-col h-full">
+                <div key={index} className="card group flex flex-col h-full shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_30px_rgba(168,85,247,0.25)] transition-all duration-500">
                   <div className="mb-6 p-4 rounded-xl bg-brand-500/10 border border-brand-500/20 w-fit group-hover:bg-brand-500/20 transition-colors duration-300">
                     {benefit.icon}
                   </div>
@@ -166,7 +166,7 @@ const FinishMyProject: React.FC = () => {
             
             <div className="grid md:grid-cols-3 gap-10">
               {process.map((step, index) => (
-                <div key={index} className="card relative group">
+                <div key={index} className="card relative group shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_30px_rgba(168,85,247,0.25)] transition-all duration-500">
                   <div className="absolute -top-6 -left-6 bg-gradient-to-br from-brand-500 to-brand-600 rounded-2xl h-14 w-14 flex items-center justify-center font-bold text-white text-lg shadow-medium">
                     {step.number}
                   </div>
@@ -190,7 +190,7 @@ const FinishMyProject: React.FC = () => {
             
             <div className="grid md:grid-cols-3 gap-10">
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="card">
+                <div key={index} className="card shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_30px_rgba(168,85,247,0.25)] transition-all duration-500">
                   <blockquote className="text-lg mb-8 italic text-neutral-300 leading-relaxed">
                     "{testimonial.quote}"
                   </blockquote>
@@ -213,7 +213,7 @@ const FinishMyProject: React.FC = () => {
             
             <div className="max-w-4xl mx-auto space-y-8">
               {faqs.map((faq, index) => (
-                <div key={index} className="card">
+                <div key={index} className="card shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_30px_rgba(168,85,247,0.25)] transition-all duration-500">
                   <h3 className="text-xl font-semibold mb-4 text-neutral-100">{faq.question}</h3>
                   <p className="text-neutral-400 leading-relaxed text-lg">{faq.answer}</p>
                 </div>
@@ -225,7 +225,7 @@ const FinishMyProject: React.FC = () => {
         {/* CTA Section */}
         <section id="contact" className="section section-light">
           <div className="container relative z-10">
-            <div className="max-w-5xl mx-auto card relative overflow-hidden">
+            <div className="max-w-5xl mx-auto card relative overflow-hidden shadow-[0_0_25px_rgba(168,85,247,0.2)] hover:shadow-[0_0_35px_rgba(168,85,247,0.3)] transition-all duration-500">
               <div className="absolute inset-0 gradient-overlay opacity-50"></div>
               
               <div className="relative z-10 text-center mb-12 pt-8">
@@ -291,7 +291,7 @@ const FinishMyProject: React.FC = () => {
                 
                 <button
                   type="submit"
-                  className="w-full btn btn-primary py-5 text-lg flex items-center justify-center gap-3 group"
+                  className="w-full btn btn-primary py-5 text-lg flex items-center justify-center gap-3 group shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transition-all duration-300"
                 >
                   Finish My Site Now
                   <CaretRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" weight="bold" />
