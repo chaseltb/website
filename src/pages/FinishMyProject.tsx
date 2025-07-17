@@ -8,18 +8,18 @@ const FinishMyProject: React.FC = () => {
   const benefits = [
     {
       icon: <Rocket className="h-8 w-8 text-brand-500" weight="bold" />,
-      title: "Get unstuck and launched — fast",
+      title: "Get unstuck and launched fast",
       description: "I pick up where you left off and finish your Vibe project without needing long calls or hand-holding."
     },
     {
       icon: <Target className="h-8 w-8 text-brand-500" weight="bold" />,
       title: "No confusing tech or extra tools",
-      description: "You don't need to learn a new platform — I work directly inside your existing project so there's zero setup on your end."
+      description: "You don't need to learn a new platform. I work directly inside your existing project so there's zero setup on your end."
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-brand-500" weight="bold" />,
       title: "Built to look good and actually convert",
-      description: "I fine-tune layouts, sections, and CTAs so your site isn't just \"done\" — it's ready to win clients."
+      description: "I fine-tune layouts, sections, and CTAs so your site isn't just \"done\", it's ready to win clients."
     }
   ];
 
@@ -27,7 +27,7 @@ const FinishMyProject: React.FC = () => {
     {
       number: "01",
       title: "Share your Vibe project link",
-      description: "You fill out a simple form and give access — no tech setup needed."
+      description: "You fill out a simple form and give access. No tech setup needed."
     },
     {
       number: "02", 
@@ -53,7 +53,7 @@ const FinishMyProject: React.FC = () => {
       title: "Personal Brand Coach"
     },
     {
-      quote: "I spent weeks stuck. He finished it in days — and it actually looks better than I imagined.",
+      quote: "I spent weeks stuck. He finished it in days and it actually looks better than I imagined.",
       name: "Jess",
       title: "Wellness Coach"
     }
@@ -66,7 +66,7 @@ const FinishMyProject: React.FC = () => {
     },
     {
       question: "Do I need to give a full design brief?",
-      answer: "Nope. Just a short form and your project link. I'll handle the rest — and check in if anything's unclear."
+      answer: "Nope. Just a short form and your project link. I'll handle the rest and check in if anything's unclear."
     },
     {
       question: "How long does it take?",
@@ -96,8 +96,7 @@ const FinishMyProject: React.FC = () => {
           <div className="container">
             <div className="max-w-5xl mx-auto text-center">
               <h1 className="mb-8 font-bold">
-                <span className="block mb-3">I help non-technical founders finish their Vibe website</span>
-                <span className="gradient-text">— fast.</span>
+                <span className="block mb-3">I help non-technical founders finish their Vibe websit fast
               </h1>
               
               <p className="text-xl md:text-2xl text-neutral-400 mb-12 max-w-4xl mx-auto leading-relaxed">
