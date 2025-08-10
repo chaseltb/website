@@ -4,7 +4,6 @@ import { CaretRight, CheckCircle, Clock, Rocket, Target, Users } from 'phosphor-
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProjectTransformAnimation from '../components/ProjectTransformAnimation';
-import ProjectTransformAnimation from '../components/ProjectTransformAnimation';
 
 const FinishMyProject: React.FC = () => {
   const benefits = [
