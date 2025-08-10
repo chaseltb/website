@@ -71,34 +71,8 @@ const ProjectTransformAnimation: React.FC = () => {
     dodecahedron.position.x = 5;
     scene.add(dodecahedron);
 
-    // Create icon meshes for dodecahedron (using simple geometric shapes as placeholders)
-    const iconGeometries = [
-      new THREE.BoxGeometry(0.2, 0.2, 0.2),
-      new THREE.ConeGeometry(0.1, 0.3, 8),
-      new THREE.CylinderGeometry(0.1, 0.1, 0.3, 8),
-      new THREE.OctahedronGeometry(0.15),
-      new THREE.TetrahedronGeometry(0.15)
-    ];
-
     const iconMaterial = new THREE.MeshPhongMaterial({ color: 0x22c55e });
     const iconMeshes: THREE.Mesh[] = [];
-
-    iconGeometries.forEach((geometry, index) => {
-      const mesh = new THREE.Mesh(geometry, iconMaterial);
-      
-      // Position around dodecahedron in organized pattern
-      const phi = Math.acos(-1 + (2 * index) / iconGeometries.length);
-      const theta = Math.sqrt(iconGeometries.length * Math.PI) * phi;
-      
-      mesh.position.set(
-        5 + Math.cos(theta) * Math.sin(phi) * 3,
-        Math.sin(theta) * Math.sin(phi) * 3,
-        Math.cos(phi) * 3
-      );
-      
-      scene.add(mesh);
-      iconMeshes.push(mesh);
-    });
 
     // Create emoji sprites for torus knot
     const chaosEmojiTextures = ['😵', '🤔', '😤', '😩', '🤯'].map(emoji => {
@@ -132,7 +106,7 @@ const ProjectTransformAnimation: React.FC = () => {
     });
 
     // Create business/software emoji sprites for dodecahedron
-    const businessEmojiTextures = ['💼', '💰', '📈', '⚙️', '🚀', '💡', '🎯', '✨', '🔧', '📊', '💻', '🏆'].map(emoji => {
+    const businessEmojiTextures = ['💰', '📈', '🎯', '✨', '📊', '🏆'].map(emoji => {
       const canvas = document.createElement('canvas');
       canvas.width = 64;
       canvas.height = 64;
