@@ -54,51 +54,24 @@ const ProjectTransformAnimation: React.FC = () => {
     torusKnot.position.x = -5;
     scene.add(torusKnot);
 
-    // Create gold rook chess piece (organized state)
-    const rookGroup = new THREE.Group();
-    
-    // Rook base (cylinder)
-    const baseGeometry = new THREE.CylinderGeometry(1.2, 1.4, 0.3, 16);
-    const baseMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0xffd700,
-      metalness: 0.9,
-      roughness: 0.1,
+    // Create glowing purple dodecahedron (organized state)
+    const dodecahedronGeometry = new THREE.DodecahedronGeometry(1.5);
+    const dodecahedronMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0xa855f7,
+      metalness: 0.3,
+      roughness: 0.2,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.1
+      clearcoatRoughness: 0.1,
+      emissive: 0xa855f7,
+      emissiveIntensity: 0.3,
+      transparent: true,
+      opacity: 0.9
     });
-    const base = new THREE.Mesh(baseGeometry, baseMaterial);
-    base.position.y = -1.5;
-    rookGroup.add(base);
+    const dodecahedron = new THREE.Mesh(dodecahedronGeometry, dodecahedronMaterial);
+    dodecahedron.position.x = 5;
+    scene.add(dodecahedron);
 
-    // Rook body (cylinder)
-    const bodyGeometry = new THREE.CylinderGeometry(1.0, 1.2, 2.0, 16);
-    const body = new THREE.Mesh(bodyGeometry, baseMaterial);
-    body.position.y = -0.3;
-    rookGroup.add(body);
-
-    // Rook top (cylinder with crenellations)
-    const topGeometry = new THREE.CylinderGeometry(1.1, 1.0, 0.4, 16);
-    const top = new THREE.Mesh(topGeometry, baseMaterial);
-    top.position.y = 0.9;
-    rookGroup.add(top);
-
-    // Crenellations (small boxes on top)
-    const crenellationGeometry = new THREE.BoxGeometry(0.3, 0.4, 0.3);
-    for (let i = 0; i < 8; i++) {
-      const angle = (i / 8) * Math.PI * 2;
-      const crenellation = new THREE.Mesh(crenellationGeometry, baseMaterial);
-      crenellation.position.set(
-        Math.cos(angle) * 1.1,
-        1.3,
-        Math.sin(angle) * 1.1
-      );
-      rookGroup.add(crenellation);
-    }
-
-    rookGroup.position.x = 5;
-    scene.add(rookGroup);
-
-    // Create icon meshes for rook (using simple geometric shapes as placeholders)
+    // Create icon meshes for dodecahedron (using simple geometric shapes as placeholders)
     const iconGeometries = [
       new THREE.BoxGeometry(0.2, 0.2, 0.2),
       new THREE.ConeGeometry(0.1, 0.3, 8),
@@ -113,7 +86,7 @@ const ProjectTransformAnimation: React.FC = () => {
     iconGeometries.forEach((geometry, index) => {
       const mesh = new THREE.Mesh(geometry, iconMaterial);
       
-      // Position around rook in organized pattern
+      // Position around dodecahedron in organized pattern
       const phi = Math.acos(-1 + (2 * index) / iconGeometries.length);
       const theta = Math.sqrt(iconGeometries.length * Math.PI) * phi;
       
@@ -158,6 +131,24 @@ const ProjectTransformAnimation: React.FC = () => {
       emojiSprites.push(sprite);
     });
 
+    // Mouse interaction for hover effect
+    let mouseX = 0;
+    let mouseY = 0;
+    let isHovering = false;
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = renderer.domElement.getBoundingClientRect();
+      mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      
+      // Check if hovering over dodecahedron area (rough approximation)
+      const dodecahedronScreenX = 0.5; // Right side of screen
+      const hoverDistance = Math.abs(mouseX - dodecahedronScreenX);
+      isHovering = hoverDistance < 0.3 && Math.abs(mouseY) < 0.5;
+    };
+
+    renderer.domElement.addEventListener('mousemove', handleMouseMove);
+
     // Animation loop
     const animate = () => {
       if (!isVisible) {
@@ -182,8 +173,14 @@ const ProjectTransformAnimation: React.FC = () => {
         sprite.rotation.z += 0.05;
       });
 
-      // Rotate rook smoothly
-      rookGroup.rotation.y += 0.01;
+      // Rotate dodecahedron smoothly and handle hover effect
+      dodecahedron.rotation.x += 0.005;
+      dodecahedron.rotation.y += 0.01;
+      dodecahedron.rotation.z += 0.003;
+      
+      // Enhance glow on hover
+      const targetIntensity = isHovering ? 0.6 : 0.3;
+      dodecahedronMaterial.emissiveIntensity += (targetIntensity - dodecahedronMaterial.emissiveIntensity) * 0.1;
 
       // Animate icon meshes in organized orbits
       iconMeshes.forEach((mesh, index) => {
@@ -227,6 +224,9 @@ const ProjectTransformAnimation: React.FC = () => {
     return () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
+      }
+      if (renderer.domElement) {
+        renderer.domElement.removeEventListener('mousemove', handleMouseMove);
       }
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
