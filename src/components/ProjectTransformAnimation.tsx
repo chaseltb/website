@@ -159,6 +159,25 @@ const ProjectTransformAnimation: React.FC = () => {
       facePointLights.push(pointLight);
     }
 
+    // Create orbiting point lights
+    const numOrbitingLights = 6;
+    const orbitingLights: THREE.PointLight[] = [];
+    
+    for (let i = 0; i < numOrbitingLights; i++) {
+      const orbitingLight = new THREE.PointLight(0xa855f7, 0.2, 5);
+      
+      // Initial positioning around dodecahedron
+      const angle = (i / numOrbitingLights) * Math.PI * 2;
+      orbitingLight.position.set(
+        5 + Math.cos(angle) * 3,
+        Math.sin(angle) * 3 * 0.5,
+        Math.sin(angle * 2) * 3 * 0.3
+      );
+      
+      scene.add(orbitingLight);
+      orbitingLights.push(orbitingLight);
+    }
+
     // Mouse interaction for hover effect
     let mouseX = 0;
     let mouseY = 0;
