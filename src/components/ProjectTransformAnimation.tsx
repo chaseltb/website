@@ -17,11 +17,11 @@ const ProjectTransformAnimation: React.FC = () => {
     scene.background = new THREE.Color(0x0a0a0a);
     sceneRef.current = scene;
 
-    const camera = new THREE.PerspectiveCamera(75, 800 / 400, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, 1200 / 400, 0.1, 1000);
     camera.position.z = 8;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(800, 400);
+    renderer.setSize(1200, 400);
     renderer.setClearColor(0x0a0a0a, 0);
     rendererRef.current = renderer;
     mountRef.current.appendChild(renderer.domElement);
@@ -34,6 +34,15 @@ const ProjectTransformAnimation: React.FC = () => {
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
+    // Additional lighting for the gold rook
+    const goldLight = new THREE.DirectionalLight(0xffd700, 0.8);
+    goldLight.position.set(-5, 5, 5);
+    scene.add(goldLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.3);
+    rimLight.position.set(0, -5, -5);
+    scene.add(rimLight);
+
     // Create torus knot (messy state)
     const torusKnotGeometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
     const torusKnotMaterial = new THREE.MeshPhongMaterial({ 
@@ -42,19 +51,81 @@ const ProjectTransformAnimation: React.FC = () => {
       opacity: 0.8
     });
     const torusKnot = new THREE.Mesh(torusKnotGeometry, torusKnotMaterial);
-    torusKnot.position.x = -3;
+    torusKnot.position.x = -5;
     scene.add(torusKnot);
 
-    // Create sphere (organized state)
-    const sphereGeometry = new THREE.SphereGeometry(1.5, 32, 32);
-    const sphereMaterial = new THREE.MeshPhongMaterial({ 
-      color: 0xa855f7,
-      transparent: true,
-      opacity: 0.8
+    // Create gold rook chess piece (organized state)
+    const rookGroup = new THREE.Group();
+    
+    // Rook base (cylinder)
+    const baseGeometry = new THREE.CylinderGeometry(1.2, 1.4, 0.3, 16);
+    const baseMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0xffd700,
+      metalness: 0.9,
+      roughness: 0.1,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1
     });
-    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    sphere.position.x = 3;
-    scene.add(sphere);
+    const base = new THREE.Mesh(baseGeometry, baseMaterial);
+    base.position.y = -1.5;
+    rookGroup.add(base);
+
+    // Rook body (cylinder)
+    const bodyGeometry = new THREE.CylinderGeometry(1.0, 1.2, 2.0, 16);
+    const body = new THREE.Mesh(bodyGeometry, baseMaterial);
+    body.position.y = -0.3;
+    rookGroup.add(body);
+
+    // Rook top (cylinder with crenellations)
+    const topGeometry = new THREE.CylinderGeometry(1.1, 1.0, 0.4, 16);
+    const top = new THREE.Mesh(topGeometry, baseMaterial);
+    top.position.y = 0.9;
+    rookGroup.add(top);
+
+    // Crenellations (small boxes on top)
+    const crenellationGeometry = new THREE.BoxGeometry(0.3, 0.4, 0.3);
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const crenellation = new THREE.Mesh(crenellationGeometry, baseMaterial);
+      crenellation.position.set(
+        Math.cos(angle) * 1.1,
+        1.3,
+        Math.sin(angle) * 1.1
+      );
+      rookGroup.add(crenellation);
+    }
+
+    rookGroup.position.x = 5;
+    scene.add(rookGroup);
+
+    // Create icon meshes for rook (using simple geometric shapes as placeholders)
+    const iconGeometries = [
+      new THREE.BoxGeometry(0.2, 0.2, 0.2),
+      new THREE.ConeGeometry(0.1, 0.3, 8),
+      new THREE.CylinderGeometry(0.1, 0.1, 0.3, 8),
+      new THREE.OctahedronGeometry(0.15),
+      new THREE.TetrahedronGeometry(0.15)
+    ];
+
+    const iconMaterial = new THREE.MeshPhongMaterial({ color: 0x22c55e });
+    const iconMeshes: THREE.Mesh[] = [];
+
+    iconGeometries.forEach((geometry, index) => {
+      const mesh = new THREE.Mesh(geometry, iconMaterial);
+      
+      // Position around rook in organized pattern
+      const phi = Math.acos(-1 + (2 * index) / iconGeometries.length);
+      const theta = Math.sqrt(iconGeometries.length * Math.PI) * phi;
+      
+      mesh.position.set(
+        5 + Math.cos(theta) * Math.sin(phi) * 3,
+        Math.sin(theta) * Math.sin(phi) * 3,
+        Math.cos(phi) * 3
+      );
+      
+      scene.add(mesh);
+      iconMeshes.push(mesh);
+    });
 
     // Create emoji sprites for torus knot
     const emojiTextures = ['😵', '🤔', '😤', '😩', '🤯'].map(emoji => {
@@ -78,42 +149,13 @@ const ProjectTransformAnimation: React.FC = () => {
       // Position around torus knot
       const angle = (index / emojiTextures.length) * Math.PI * 2;
       sprite.position.set(
-        -3 + Math.cos(angle) * 2,
+        -5 + Math.cos(angle) * 2,
         Math.sin(angle) * 2,
         Math.sin(angle * 2) * 0.5
       );
       
       scene.add(sprite);
       emojiSprites.push(sprite);
-    });
-
-    // Create icon sprites for sphere (using simple geometric shapes as placeholders)
-    const iconGeometries = [
-      new THREE.BoxGeometry(0.2, 0.2, 0.2),
-      new THREE.ConeGeometry(0.1, 0.3, 8),
-      new THREE.CylinderGeometry(0.1, 0.1, 0.3, 8),
-      new THREE.OctahedronGeometry(0.15),
-      new THREE.TetrahedronGeometry(0.15)
-    ];
-
-    const iconMaterial = new THREE.MeshPhongMaterial({ color: 0x22c55e });
-    const iconMeshes: THREE.Mesh[] = [];
-
-    iconGeometries.forEach((geometry, index) => {
-      const mesh = new THREE.Mesh(geometry, iconMaterial);
-      
-      // Position around sphere in organized pattern
-      const phi = Math.acos(-1 + (2 * index) / iconGeometries.length);
-      const theta = Math.sqrt(iconGeometries.length * Math.PI) * phi;
-      
-      mesh.position.set(
-        3 + Math.cos(theta) * Math.sin(phi) * 2.5,
-        Math.sin(theta) * Math.sin(phi) * 2.5,
-        Math.cos(phi) * 2.5
-      );
-      
-      scene.add(mesh);
-      iconMeshes.push(mesh);
     });
 
     // Animation loop
@@ -133,15 +175,15 @@ const ProjectTransformAnimation: React.FC = () => {
         const time = Date.now() * 0.001;
         const angle = (index / emojiSprites.length) * Math.PI * 2 + time;
         sprite.position.set(
-          -3 + Math.cos(angle) * (2 + Math.sin(time * 2) * 0.5),
+          -5 + Math.cos(angle) * (2 + Math.sin(time * 2) * 0.5),
           Math.sin(angle) * (2 + Math.cos(time * 1.5) * 0.5),
           Math.sin(angle * 2 + time) * 0.8
         );
         sprite.rotation.z += 0.05;
       });
 
-      // Rotate sphere smoothly
-      sphere.rotation.y += 0.01;
+      // Rotate rook smoothly
+      rookGroup.rotation.y += 0.01;
 
       // Animate icon meshes in organized orbits
       iconMeshes.forEach((mesh, index) => {
@@ -151,9 +193,9 @@ const ProjectTransformAnimation: React.FC = () => {
         const theta = baseAngle + time * 0.5;
         
         mesh.position.set(
-          3 + Math.cos(theta) * Math.sin(phi) * 2.5,
-          Math.sin(theta) * Math.sin(phi) * 2.5,
-          Math.cos(phi) * 2.5
+          5 + Math.cos(theta) * Math.sin(phi) * 3,
+          Math.sin(theta) * Math.sin(phi) * 3,
+          Math.cos(phi) * 3
         );
         
         mesh.rotation.x += 0.01;
@@ -166,12 +208,15 @@ const ProjectTransformAnimation: React.FC = () => {
 
     animate();
 
-    // Intersection Observer for scroll-based animation
+    // Intersection Observer for scroll-based animation (center of screen)
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.3 }
+      { 
+        threshold: 0.5,
+        rootMargin: '-20% 0px -20% 0px'
+      }
     );
 
     if (mountRef.current) {
@@ -203,30 +248,29 @@ const ProjectTransformAnimation: React.FC = () => {
           </p>
         </div>
         
-        <div className="flex items-center justify-center mb-16">
+        <div className="flex flex-col items-center justify-center mb-16">
           <div className="card p-8 bg-neutral-900/40 border border-neutral-800/50 shadow-[0_0_35px_rgba(168,85,247,0.3)]">
-            <div className="flex items-center justify-center gap-8">
-              {/* Messy State Label */}
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-red-400 mb-2">Your Project Now</h3>
-                <p className="text-sm text-neutral-500">Chaotic & Stuck</p>
-              </div>
-              
+            <div className="flex items-center justify-center gap-12">
               {/* Three.js Animation */}
               <div 
                 ref={mountRef} 
                 className="rounded-xl overflow-hidden border border-neutral-700/50"
-                style={{ width: '800px', height: '400px' }}
+                style={{ width: '1200px', height: '400px' }}
               />
-              
-              {/* Arrow */}
-              <div className="flex flex-col items-center">
-                <CaretRight className="h-12 w-12 text-brand-500 mb-2" weight="bold" />
-                <p className="text-sm text-brand-400 font-medium">Transform</p>
+            </div>
+            
+            {/* Labels below animation */}
+            <div className="flex justify-between items-center mt-8 px-8">
+              <div className="text-center flex-1">
+                <h3 className="text-lg font-semibold text-red-400 mb-2">Your Project Now</h3>
+                <p className="text-sm text-neutral-500">Chaotic & Stuck</p>
               </div>
               
-              {/* Organized State Label */}
-              <div className="text-center">
+              <div className="flex-1 flex justify-center">
+                <CaretRight className="h-12 w-12 text-brand-500" weight="bold" />
+              </div>
+              
+              <div className="text-center flex-1">
                 <h3 className="text-lg font-semibold text-green-400 mb-2">After I'm Done</h3>
                 <p className="text-sm text-neutral-500">Organized & Ready</p>
               </div>
