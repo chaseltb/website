@@ -101,7 +101,38 @@ const ProjectTransformAnimation: React.FC = () => {
     });
 
     // Create emoji sprites for torus knot
-    const emojiTextures = ['😵', '🤔', '😤', '😩', '🤯'].map(emoji => {
+    const chaosEmojiTextures = ['😵', '🤔', '😤', '😩', '🤯'].map(emoji => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 128;
+      canvas.height = 128;
+      const context = canvas.getContext('2d')!;
+      context.font = '96px Arial';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(emoji, 64, 64);
+      return new THREE.CanvasTexture(canvas);
+    });
+
+    const chaosEmojiSprites: THREE.Sprite[] = [];
+    chaosEmojiTextures.forEach((texture, index) => {
+      const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+      const sprite = new THREE.Sprite(spriteMaterial);
+      sprite.scale.set(1, 1, 1);
+      
+      // Position around torus knot
+      const angle = (index / chaosEmojiTextures.length) * Math.PI * 2;
+      sprite.position.set(
+        -5 + Math.cos(angle) * 2,
+        Math.sin(angle) * 2,
+        Math.sin(angle * 2) * 0.5
+      );
+      
+      scene.add(sprite);
+      chaosEmojiSprites.push(sprite);
+    });
+
+    // Create business/software emoji sprites for dodecahedron
+    const businessEmojiTextures = ['💼', '💰', '📈', '⚙️', '🚀', '💡', '🎯', '✨', '🔧', '📊', '💻', '🏆'].map(emoji => {
       const canvas = document.createElement('canvas');
       canvas.width = 64;
       canvas.height = 64;
@@ -113,22 +144,45 @@ const ProjectTransformAnimation: React.FC = () => {
       return new THREE.CanvasTexture(canvas);
     });
 
-    const emojiSprites: THREE.Sprite[] = [];
-    emojiTextures.forEach((texture, index) => {
+    const businessEmojiSprites: THREE.Sprite[] = [];
+    businessEmojiTextures.forEach((texture, index) => {
       const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
       const sprite = new THREE.Sprite(spriteMaterial);
-      sprite.scale.set(0.5, 0.5, 1);
+      sprite.scale.set(0.6, 0.6, 1);
       
-      // Position around torus knot
-      const angle = (index / emojiTextures.length) * Math.PI * 2;
+      // Position around dodecahedron in organized pattern
+      const phi = Math.acos(-1 + (2 * index) / businessEmojiTextures.length);
+      const theta = Math.sqrt(businessEmojiTextures.length * Math.PI) * phi;
+      
       sprite.position.set(
-        -5 + Math.cos(angle) * 2,
-        Math.sin(angle) * 2,
-        Math.sin(angle * 2) * 0.5
+        5 + Math.cos(theta) * Math.sin(phi) * 2.5,
+        Math.sin(theta) * Math.sin(phi) * 2.5,
+        Math.cos(phi) * 2.5
       );
       
       scene.add(sprite);
-      emojiSprites.push(sprite);
+      businessEmojiSprites.push(sprite);
+    });
+
+    // Create point lights for each face of the dodecahedron
+    const dodecahedronFaces = 12;
+    const facePointLights: THREE.PointLight[] = [];
+    
+    for (let i = 0; i < dodecahedronFaces; i++) {
+      const pointLight = new THREE.PointLight(0xa855f7, 0.2, 3);
+      
+      // Position lights at dodecahedron face centers
+      const phi = Math.acos(-1 + (2 * i) / dodecahedronFaces);
+      const theta = Math.sqrt(dodecahedronFaces * Math.PI) * phi;
+      
+      pointLight.position.set(
+        5 + Math.cos(theta) * Math.sin(phi) * 1.8,
+        Math.sin(theta) * Math.sin(phi) * 1.8,
+        Math.cos(phi) * 1.8
+      );
+      
+      scene.add(pointLight);
+      facePointLights.push(pointLight);
     });
 
     // Mouse interaction for hover effect
@@ -162,9 +216,9 @@ const ProjectTransformAnimation: React.FC = () => {
       torusKnot.rotation.z += 0.01;
 
       // Animate emoji sprites chaotically
-      emojiSprites.forEach((sprite, index) => {
+      chaosEmojiSprites.forEach((sprite, index) => {
         const time = Date.now() * 0.001;
-        const angle = (index / emojiSprites.length) * Math.PI * 2 + time;
+        const angle = (index / chaosEmojiSprites.length) * Math.PI * 2 + time;
         sprite.position.set(
           -5 + Math.cos(angle) * (2 + Math.sin(time * 2) * 0.5),
           Math.sin(angle) * (2 + Math.cos(time * 1.5) * 0.5),
@@ -181,22 +235,25 @@ const ProjectTransformAnimation: React.FC = () => {
       // Enhance glow on hover
       const targetIntensity = isHovering ? 0.6 : 0.3;
       dodecahedronMaterial.emissiveIntensity += (targetIntensity - dodecahedronMaterial.emissiveIntensity) * 0.1;
+      
+      // Animate face point lights intensity on hover
+      const targetLightIntensity = isHovering ? 0.5 : 0.2;
+      facePointLights.forEach(light => {
+        light.intensity += (targetLightIntensity - light.intensity) * 0.1;
+      });
 
-      // Animate icon meshes in organized orbits
-      iconMeshes.forEach((mesh, index) => {
+      // Animate business emoji sprites in organized orbits
+      businessEmojiSprites.forEach((sprite, index) => {
         const time = Date.now() * 0.001;
-        const baseAngle = (index / iconMeshes.length) * Math.PI * 2;
-        const phi = Math.acos(-1 + (2 * index) / iconMeshes.length);
+        const baseAngle = (index / businessEmojiSprites.length) * Math.PI * 2;
+        const phi = Math.acos(-1 + (2 * index) / businessEmojiSprites.length);
         const theta = baseAngle + time * 0.5;
         
-        mesh.position.set(
-          5 + Math.cos(theta) * Math.sin(phi) * 3,
-          Math.sin(theta) * Math.sin(phi) * 3,
-          Math.cos(phi) * 3
+        sprite.position.set(
+          5 + Math.cos(theta) * Math.sin(phi) * 2.5,
+          Math.sin(theta) * Math.sin(phi) * 2.5,
+          Math.cos(phi) * 2.5
         );
-        
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.01;
       });
 
       renderer.render(scene, camera);
