@@ -183,7 +183,7 @@ const ProjectTransformAnimation: React.FC = () => {
       
       scene.add(pointLight);
       facePointLights.push(pointLight);
-    });
+    }
 
     // Mouse interaction for hover effect
     let mouseX = 0;
