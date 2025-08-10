@@ -34,11 +34,6 @@ const ProjectTransformAnimation: React.FC = () => {
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // Additional lighting for the gold rook
-    const goldLight = new THREE.DirectionalLight(0xffd700, 0.8);
-    goldLight.position.set(-5, 5, 5);
-    scene.add(goldLight);
-
     const rimLight = new THREE.DirectionalLight(0xffffff, 0.3);
     rimLight.position.set(0, -5, -5);
     scene.add(rimLight);
@@ -138,45 +133,6 @@ const ProjectTransformAnimation: React.FC = () => {
       businessEmojiSprites.push(sprite);
     });
 
-    // Create point lights for each face of the dodecahedron
-    const dodecahedronFaces = 12;
-    const facePointLights: THREE.PointLight[] = [];
-    
-    for (let i = 0; i < dodecahedronFaces; i++) {
-      const pointLight = new THREE.PointLight(0xa855f7, 0.2, 3);
-      
-      // Position lights at dodecahedron face centers
-      const phi = Math.acos(-1 + (2 * i) / dodecahedronFaces);
-      const theta = Math.sqrt(dodecahedronFaces * Math.PI) * phi;
-      
-      pointLight.position.set(
-        5 + Math.cos(theta) * Math.sin(phi) * 1.8,
-        Math.sin(theta) * Math.sin(phi) * 1.8,
-        Math.cos(phi) * 1.8
-      );
-      
-      scene.add(pointLight);
-      facePointLights.push(pointLight);
-    }
-
-    // Create orbiting point lights
-    const numOrbitingLights = 6;
-    const orbitingLights: THREE.PointLight[] = [];
-    
-    for (let i = 0; i < numOrbitingLights; i++) {
-      const orbitingLight = new THREE.PointLight(0xa855f7, 0.2, 5);
-      
-      // Initial positioning around dodecahedron
-      const angle = (i / numOrbitingLights) * Math.PI * 2;
-      orbitingLight.position.set(
-        5 + Math.cos(angle) * 3,
-        Math.sin(angle) * 3 * 0.5,
-        Math.sin(angle * 2) * 3 * 0.3
-      );
-      
-      scene.add(orbitingLight);
-      orbitingLights.push(orbitingLight);
-    }
 
     // Mouse interaction for hover effect
     let mouseX = 0;
