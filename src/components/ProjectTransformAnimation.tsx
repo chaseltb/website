@@ -184,23 +184,6 @@ const ProjectTransformAnimation: React.FC = () => {
       // Enhance glow on hover
       const targetIntensity = isHovering ? 0.6 : 0.3;
       dodecahedronMaterial.emissiveIntensity += (targetIntensity - dodecahedronMaterial.emissiveIntensity) * 0.1;
-      
-      // Animate orbiting point lights
-      const targetLightIntensity = isHovering ? 0.5 : 0.2;
-      orbitingLights.forEach((light, index) => {
-        light.intensity += (targetLightIntensity - light.intensity) * 0.1;
-        
-        // Orbit around dodecahedron
-        const time = Date.now() * 0.001;
-        const angle = (index / numOrbitingLights) * Math.PI * 2 + time * 0.5;
-        const radius = 3;
-        
-        light.position.set(
-          5 + Math.cos(angle) * radius,
-          Math.sin(angle) * radius * 0.5,
-          Math.sin(angle * 2) * radius * 0.3
-        );
-      });
 
       // Keep business emoji sprites fixed on dodecahedron faces (they rotate with the dodecahedron)
       businessEmojiSprites.forEach((sprite, index) => {
