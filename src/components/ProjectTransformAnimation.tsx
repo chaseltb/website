@@ -42,6 +42,8 @@ const ProjectTransformAnimation: React.FC = () => {
     const torusKnotGeometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
     const torusKnotMaterial = new THREE.MeshPhongMaterial({ 
       color: 0xff6b6b,
+      emissive: 0xff0000,
+      emissiveIntensity: 0.0,
       transparent: true,
       opacity: 0.8
     });
@@ -137,17 +139,23 @@ const ProjectTransformAnimation: React.FC = () => {
     // Mouse interaction for hover effect
     let mouseX = 0;
     let mouseY = 0;
-    let isHovering = false;
+    let isHoveringDodecahedron = false;
+    let isHoveringTorusKnot = false;
 
     const handleMouseMove = (event: MouseEvent) => {
       const rect = renderer.domElement.getBoundingClientRect();
       mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       
-      // Check if hovering over dodecahedron area (rough approximation)
-      const dodecahedronScreenX = 0.5; // Right side of screen
+      // Check if hovering over dodecahedron area (right side)
+      const dodecahedronScreenX = 0.33; // Right side of screen
       const hoverDistance = Math.abs(mouseX - dodecahedronScreenX);
-      isHovering = hoverDistance < 0.3 && Math.abs(mouseY) < 0.5;
+      isHoveringDodecahedron = hoverDistance < 0.3 && Math.abs(mouseY) < 0.5;
+      
+      // Check if hovering over torus knot area (left side)
+      const torusKnotScreenX = -0.33; // Left side of screen
+      const torusHoverDistance = Math.abs(mouseX - torusKnotScreenX);
+      isHoveringTorusKnot = torusHoverDistance < 0.3 && Math.abs(mouseY) < 0.5;
     };
 
     renderer.domElement.addEventListener('mousemove', handleMouseMove);
@@ -182,8 +190,12 @@ const ProjectTransformAnimation: React.FC = () => {
       dodecahedron.rotation.z += 0.003;
       
       // Enhance glow on hover
-      const targetIntensity = isHovering ? 0.6 : 0.3;
+      const targetIntensity = isHoveringDodecahedron ? 0.6 : 0.3;
       dodecahedronMaterial.emissiveIntensity += (targetIntensity - dodecahedronMaterial.emissiveIntensity) * 0.1;
+
+      // Torus knot hover effect - red glow
+      const torusTargetIntensity = isHoveringTorusKnot ? 0.4 : 0.0;
+      torusKnotMaterial.emissiveIntensity += (torusTargetIntensity - torusKnotMaterial.emissiveIntensity) * 0.1;
 
       // Keep business emoji sprites fixed on dodecahedron faces (they rotate with the dodecahedron)
       businessEmojiSprites.forEach((sprite, index) => {
@@ -272,13 +284,13 @@ const ProjectTransformAnimation: React.FC = () => {
             </div>
             
             {/* Labels below animation */}
-            <div className="flex justify-between items-center mt-8 px-8">
+            <div className="flex justify-between items-center mt-8 px-16">
               <div className="text-center flex-1">
                 <h3 className="text-lg font-semibold text-red-400 mb-2">Your Project Now</h3>
                 <p className="text-sm text-neutral-500">Chaotic & Stuck</p>
               </div>
               
-              <div className="flex-1 flex justify-center">
+              <div className="flex-shrink-0 px-8">
                 <CaretRight className="h-12 w-12 text-brand-500" weight="bold" />
               </div>
               
