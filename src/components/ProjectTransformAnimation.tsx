@@ -210,23 +210,46 @@ const ProjectTransformAnimation: React.FC = () => {
       const targetIntensity = isHovering ? 0.6 : 0.3;
       dodecahedronMaterial.emissiveIntensity += (targetIntensity - dodecahedronMaterial.emissiveIntensity) * 0.1;
       
-      // Animate face point lights intensity on hover
+      // Animate orbiting point lights
       const targetLightIntensity = isHovering ? 0.5 : 0.2;
-      facePointLights.forEach(light => {
+      orbitingLights.forEach((light, index) => {
         light.intensity += (targetLightIntensity - light.intensity) * 0.1;
+        
+        // Orbit around dodecahedron
+        const time = Date.now() * 0.001;
+        const angle = (index / numOrbitingLights) * Math.PI * 2 + time * 0.5;
+        const radius = 3;
+        
+        light.position.set(
+          5 + Math.cos(angle) * radius,
+          Math.sin(angle) * radius * 0.5,
+          Math.sin(angle * 2) * radius * 0.3
+        );
       });
 
-      // Animate business emoji sprites in organized orbits
+      // Keep business emoji sprites fixed on dodecahedron faces (they rotate with the dodecahedron)
       businessEmojiSprites.forEach((sprite, index) => {
-        const time = Date.now() * 0.001;
-        const baseAngle = (index / businessEmojiSprites.length) * Math.PI * 2;
         const phi = Math.acos(-1 + (2 * index) / businessEmojiSprites.length);
-        const theta = baseAngle + time * 0.5;
+        const theta = Math.sqrt(businessEmojiSprites.length * Math.PI) * phi;
+        
+        // Apply the same rotation as the dodecahedron to keep emojis on faces
+        const rotatedPosition = new THREE.Vector3(
+          Math.cos(theta) * Math.sin(phi) * 1.6,
+          Math.sin(theta) * Math.sin(phi) * 1.6,
+          Math.cos(phi) * 1.6
+        );
+        
+        // Apply dodecahedron's rotation to the emoji position
+        rotatedPosition.applyEuler(new THREE.Euler(
+          dodecahedron.rotation.x,
+          dodecahedron.rotation.y,
+          dodecahedron.rotation.z
+        ));
         
         sprite.position.set(
-          5 + Math.cos(theta) * Math.sin(phi) * 2.5,
-          Math.sin(theta) * Math.sin(phi) * 2.5,
-          Math.cos(phi) * 2.5
+          5 + rotatedPosition.x,
+          rotatedPosition.y,
+          rotatedPosition.z
         );
       });
 
