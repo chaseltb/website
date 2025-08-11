@@ -155,8 +155,6 @@ const FinishMyProject: React.FC = () => {
           </div>
         </section>
 
-        {/* Animation Section */}
-        <ProjectTransformAnimation />
 
         {/* Process Section */}
         <section className="section section-dark">
