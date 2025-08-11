@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { CaretRight, CheckCircle, Clock, Rocket, Target, Users } from 'phosphor-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ProjectTransformAnimation from '../components/ProjectTransformAnimation';
 
 const FinishMyProject: React.FC = () => {
   const benefits = [
